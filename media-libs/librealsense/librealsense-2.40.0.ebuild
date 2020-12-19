@@ -34,6 +34,7 @@ CONFIG_CHECK="USB_VIDEO_CLASS"
 ERROR_USB_VIDEO_CLASS="librealsense requires CONFIG_USB_VIDEO_CLASS enabled."
 
 #~ DOCS=( AUTHORS CLA.md CONTRIBUTING.md readme.md )
+BUILD_DIR="${WORKDIR}/${P}_build"
 
 pkg_pretend() {
 	kernel_is ge 4 4 || die "Upstream has deprecated support for kernels < 4.4."
@@ -60,9 +61,9 @@ src_compile() {
 src_install() {
 	#~ einstalldocs
 
-	dolib.so "${S}"/librealsense2.so.${PV}
-	dolib.so "${S}"/src/gl/librealsense2-gl.so.${PV}
-	dolib.a "${S}"/third-party/realsense-file/librealsense-file.a
+	dolib.so "${BUILD_DIR}"/librealsense2.so.${PV}
+	dolib.so "${BUILD_DIR}"/src/gl/librealsense2-gl.so.${PV}
+	dolib.a "${BUILD_DIR}"/third-party/realsense-file/librealsense-file.a
 
 	insinto /usr/include/
 	doins -r include/librealsense2
@@ -80,17 +81,17 @@ src_install() {
 	#~ doins -r scripts/*.patch
 
 	exeinto /usr/bin/
-	doexe "${S}"/tools/benchmark/rs-benchmark
-	doexe "${S}"/tools/convert/rs-convert
-	doexe "${S}"/tools/data-collect/rs-data-collect
-	doexe "${S}"/tools/depth-quality/rs-depth-quality
-	doexe "${S}"/tools/enumerate-devices/rs-enumerate-devices
-	doexe "${S}"/tools/fw-logger/rs-fw-logger
-	doexe "${S}"/tools/fw-update/rs-fw-update
-	doexe "${S}"/tools/realsense-viewer/realsense-viewer
-	doexe "${S}"/tools/recorder/rs-record
-	doexe "${S}"/tools/rosbag-inspector/rs-rosbag-inspector
-	doexe "${S}"/tools/terminal/rs-terminal
+	doexe "${BUILD_DIR}"/tools/benchmark/rs-benchmark
+	doexe "${BUILD_DIR}"/tools/convert/rs-convert
+	doexe "${BUILD_DIR}"/tools/data-collect/rs-data-collect
+	doexe "${BUILD_DIR}"/tools/depth-quality/rs-depth-quality
+	doexe "${BUILD_DIR}"/tools/enumerate-devices/rs-enumerate-devices
+	doexe "${BUILD_DIR}"/tools/fw-logger/rs-fw-logger
+	doexe "${BUILD_DIR}"/tools/fw-update/rs-fw-update
+	doexe "${BUILD_DIR}"/tools/realsense-viewer/realsense-viewer
+	doexe "${BUILD_DIR}"/tools/recorder/rs-record
+	doexe "${BUILD_DIR}"/tools/rosbag-inspector/rs-rosbag-inspector
+	doexe "${BUILD_DIR}"/tools/terminal/rs-terminal
 
 	if use examples; then
 		insinto /usr/share/${PF}/examples/src
