@@ -61,9 +61,7 @@ src_compile() {
 src_install() {
 	#~ einstalldocs
 
-	local major=version_get_comp 1
-	local minor=version_get_comp 2
-	local majmin="${major}.${minor}"
+	local majmin="$(ver_cut 1-2)"
 
 	newlib.so "${BUILD_DIR}"/librealsense2.so.${PV} librealsense2.so.${majmin}
 	newlib.so "${BUILD_DIR}"/src/gl/librealsense2-gl.so.${PV} librealsense2-gl.so.${majmin}
