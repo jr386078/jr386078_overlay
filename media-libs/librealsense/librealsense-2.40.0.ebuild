@@ -61,8 +61,12 @@ src_compile() {
 src_install() {
 	#~ einstalldocs
 
-	dolib.so "${BUILD_DIR}"/librealsense2.so.${PV}
-	dolib.so "${BUILD_DIR}"/src/gl/librealsense2-gl.so.${PV}
+	local major=version_get_comp 1
+	local minor=version_get_comp 2
+	local majmin="${major}.${minor}"
+
+	newlib.so "${BUILD_DIR}"/librealsense2.so.${PV} librealsense2.so.${majmin}
+	newlib.so "${BUILD_DIR}"/src/gl/librealsense2-gl.so.${PV} librealsense2-gl.so.${majmin}
 	dolib.a "${BUILD_DIR}"/third-party/realsense-file/librealsense-file.a
 
 	insinto /usr/include/
