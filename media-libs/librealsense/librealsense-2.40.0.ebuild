@@ -10,7 +10,6 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="https://github.com/IntelRealSense/${PN}.git"
 else
 	SRC_URI="https://github.com/IntelRealSense/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	#~ SRC_URI="https://github.com/IntelRealSense/librealsense/archive/v2.40.0.zip -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 fi
 
@@ -34,7 +33,7 @@ DEPEND="${RDEPEND}
 CONFIG_CHECK="USB_VIDEO_CLASS"
 ERROR_USB_VIDEO_CLASS="librealsense requires CONFIG_USB_VIDEO_CLASS enabled."
 
-DOCS=( AUTHORS CLA.md CONTRIBUTING.md readme.md )
+#~ DOCS=( AUTHORS CLA.md CONTRIBUTING.md readme.md )
 
 pkg_pretend() {
 	kernel_is ge 4 4 || die "Upstream has deprecated support for kernels < 4.4."
@@ -59,7 +58,7 @@ src_compile() {
 }
 
 src_install() {
-	einstalldocs
+	#~ einstalldocs
 
 	dolib librealsense2.so.{PV}
 
