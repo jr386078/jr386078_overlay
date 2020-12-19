@@ -58,45 +58,44 @@ src_compile() {
 }
 
 src_install() {
-	cmake_src_install
-
 	#~ einstalldocs
 
-	#~ dolib.so "${S}"/librealsense2.so.${PV}
-	#~ dolib.so "${S}"/src/gl/librealsense2-gl.so.${PV}
+	dolib.so "${S}"/librealsense2.so.${PV}
+	dolib.so "${S}"/src/gl/librealsense2-gl.so.${PV}
+	dolib.a "${S}"/third-party/realsense-file/librealsense-file.a
 
-	#~ insinto /usr/include/
-	#~ doins -r include/librealsense2
-	#~ doins -r include/librealsense2-gl
-	#~ doins -r include/librealsense2-net
+	insinto /usr/include/
+	doins -r include/librealsense2
+	doins -r include/librealsense2-gl
+	doins -r include/librealsense2-net
 
-	#~ insinto /lib/udev/rules.d/
-	#~ doins config/99-realsense-libusb.rules
+	insinto /lib/udev/rules.d/
+	doins config/99-realsense-libusb.rules
 
-	#~ insinto /usr/share/${PF}/
-	#~ doins scripts/realsense-camera-formats-bionic-hwe-5.4.patch
-	#~ doins scripts/realsense-hid-bionic-hwe-5.4.patch
-	#~ doins scripts/realsense-metadata-bionic-hwe-5.4.patch
-	#~ doins scripts/realsense-powerlinefrequency-control-fix.patch
+	insinto /usr/share/${PF}/
+	doins scripts/realsense-camera-formats-bionic-hwe-5.4.patch
+	doins scripts/realsense-hid-bionic-hwe-5.4.patch
+	doins scripts/realsense-metadata-bionic-hwe-5.4.patch
+	doins scripts/realsense-powerlinefrequency-control-fix.patch
 	#~ doins -r scripts/*.patch
 
-	#~ exeinto /usr/bin/
-	#~ doexe "${S}"/tools/benchmark/rs-benchmark
-	#~ doexe "${S}"/tools/convert/rs-convert
-	#~ doexe "${S}"/tools/data-collect/rs-data-collect
-	#~ doexe "${S}"/tools/depth-quality/rs-depth-quality
-	#~ doexe "${S}"/tools/enumerate-devices/rs-enumerate-devices
-	#~ doexe "${S}"/tools/fw-logger/rs-fw-logger
-	#~ doexe "${S}"/tools/fw-update/rs-fw-update
-	#~ doexe "${S}"/tools/realsense-viewer/realsense-viewer
-	#~ doexe "${S}"/tools/recorder/rs-record
-	#~ doexe "${S}"/tools/rosbag-inspector/rs-rosbag-inspector
-	#~ doexe "${S}"/tools/terminal/rs-terminal
+	exeinto /usr/bin/
+	doexe "${S}"/tools/benchmark/rs-benchmark
+	doexe "${S}"/tools/convert/rs-convert
+	doexe "${S}"/tools/data-collect/rs-data-collect
+	doexe "${S}"/tools/depth-quality/rs-depth-quality
+	doexe "${S}"/tools/enumerate-devices/rs-enumerate-devices
+	doexe "${S}"/tools/fw-logger/rs-fw-logger
+	doexe "${S}"/tools/fw-update/rs-fw-update
+	doexe "${S}"/tools/realsense-viewer/realsense-viewer
+	doexe "${S}"/tools/recorder/rs-record
+	doexe "${S}"/tools/rosbag-inspector/rs-rosbag-inspector
+	doexe "${S}"/tools/terminal/rs-terminal
 
-	#~ if use examples; then
-		#~ insinto /usr/share/${PF}/examples/src
-		#~ doins examples/*
-	#~ fi
+	if use examples; then
+		insinto /usr/share/${PF}/examples/src
+		doins examples/*
+	fi
 }
 
 pkg_postinst() {
