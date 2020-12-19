@@ -60,7 +60,7 @@ src_compile() {
 src_install() {
 	#~ einstalldocs
 
-	dolib.so librealsense2.so.{PV}
+	dolib.so librealsense2.so
 
 	insinto /usr/include/
 	doins -r include/librealsense
