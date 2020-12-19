@@ -60,7 +60,8 @@ src_compile() {
 src_install() {
 	#~ einstalldocs
 
-	dolib.so librealsense2.so.${PV}
+	#~ dolib.so ./librealsense2.so.${PV}
+	#~ dolib.so src/gl/librealsense2-gl.so.${PV}
 
 	insinto /usr/include/
 	doins -r include/librealsense
@@ -75,18 +76,18 @@ src_install() {
 	doins scripts/realsense-powerlinefrequency-control-fix.patch
 	#~ doins -r scripts/*.patch
 
-	insinto /usr/bin/
-	doins tools/benchmark/rs-benchmark
-	doins tools/convert/rs-convert
-	doins tools/data-collect/rs-data-collect
-	doins tools/depth-quality/rs-depth-quality
-	doins tools/enumerate-devices/rs-enumerate-devices
-	doins tools/fw-logger/rs-fw-logger
-	doins tools/fw-update/rs-fw-update
-	doins tools/realsense-viewer/realsense-viewer
-	doins tools/recorder/rs-record
-	doins tools/rosbag-inspector/rs-rosbag-inspector
-	doins tools/terminal/rs-terminal
+	exeinto /usr/bin/
+	doexe tools/benchmark/rs-benchmark
+	doexe tools/convert/rs-convert
+	doexe tools/data-collect/rs-data-collect
+	doexe tools/depth-quality/rs-depth-quality
+	doexe tools/enumerate-devices/rs-enumerate-devices
+	doexe tools/fw-logger/rs-fw-logger
+	doexe tools/fw-update/rs-fw-update
+	doexe tools/realsense-viewer/realsense-viewer
+	doexe tools/recorder/rs-record
+	doexe tools/rosbag-inspector/rs-rosbag-inspector
+	doexe tools/terminal/rs-terminal
 
 	if use examples; then
 		insinto /usr/share/${PF}/examples/src
