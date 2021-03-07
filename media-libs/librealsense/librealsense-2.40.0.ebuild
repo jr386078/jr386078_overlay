@@ -51,7 +51,7 @@ src_configure() {
 		-DBUILD_EXAMPLES=true
 	)
 	use network && mycmakeargs+=(
-		-BUILD_NETWORK_DEVICE=true
+		-DBUILD_NETWORK_DEVICE=true
 	)
 
 	cmake_src_configure
