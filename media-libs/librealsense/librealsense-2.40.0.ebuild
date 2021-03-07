@@ -18,7 +18,7 @@ HOMEPAGE="https://github.com/IntelRealSense/librealsense"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-IUSE="+examples"
+IUSE="+examples network"
 
 RDEPEND="
 	virtual/libusb:1
@@ -49,6 +49,9 @@ src_configure() {
 
 	use examples && mycmakeargs+=(
 		-DBUILD_EXAMPLES=true
+	)
+	use network && mycmakeargs+=(
+		-BUILD_NETWORK_DEVICE=true
 	)
 
 	cmake_src_configure
