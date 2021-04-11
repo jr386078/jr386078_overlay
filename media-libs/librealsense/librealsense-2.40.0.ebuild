@@ -65,9 +65,14 @@ src_install() {
 	#~ einstalldocs
 
 	local majmin="$(ver_cut 1-2)"
+	local maj="$(ver_cut 1)"
 
 	newlib.so "${BUILD_DIR}"/librealsense2.so.${PV} librealsense2.so.${majmin}
+	newlib.so "${BUILD_DIR}"/librealsense2.so.${PV} librealsense2.so.${maj}  # TODO: change to symlink
+	newlib.so "${BUILD_DIR}"/librealsense2.so.${PV} librealsense2.so  # TODO: change to symlink
 	newlib.so "${BUILD_DIR}"/src/gl/librealsense2-gl.so.${PV} librealsense2-gl.so.${majmin}
+	newlib.so "${BUILD_DIR}"/src/gl/librealsense2-gl.so.${PV} librealsense2-gl.so.${maj}  # TODO: change to symlink
+	newlib.so "${BUILD_DIR}"/src/gl/librealsense2-gl.so.${PV} librealsense2-gl.so  # TODO: change to symlink
 	dolib.a "${BUILD_DIR}"/third-party/realsense-file/librealsense-file.a
 
 	insinto /usr/include/
